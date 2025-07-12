@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>itspomme 项目合集 | 奶油Ins风</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    /* 优化后的奶油Ins风配色方案 */
+    :root {
+      --cream-bg: rgba(255, 250, 243, 0.4); 
+      --card-bg: #fffcf8; 
+      --card-shadow: rgba(188, 157, 124, 0.08); 
+      --card-border: #f5e8db; 
+      --text-primary: #5a4a3a; 
+      --text-secondary: #9c8c7c; 
+      --text-tertiary: #c9b9a8; 
+      --accent-color: #e6c2a7; 
+      --accent-light: rgba(248, 240, 232, 0.25); 
+      --button-bg: #f5ebe0; 
+      --button-hover: #e6d5c3; 
+      --section-bg: rgba(255, 248, 240, 0.3); 
+      --success: #b8c9b0; 
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--cream-bg);
+      color: var(--text-primary);
+      padding: 25px 15px;
+      min-height: 100vh;
+      background-image: radial-gradient(circle at 10% 20%, rgba(255, 250, 243, 0.8) 0%, rgba(255, 248, 240, 0.9) 90%);
+    }
+
+    .container {
+  padding-top: 40px;
+  padding-bottom: 60px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      padding-top: 10px;
+    }
+
+    header::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: bold; /* 标题加粗 */
+      letter-spacing: 1px;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    h1::before, h1::after {
+      content: "✦";
+      color: var(--accent-color);
+      font-size: 1rem;
+      margin: 0 10px;
+      position: relative;
+      top: -3px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* 用户卡片区域样式 */
+    .user-section {
+  margin-top: 40px;
+      margin-bottom: 25px;
+      padding: 16px 14px;
+      background: var(--section-bg);
+      border-radius: 14px;
+      box-shadow: 0 6px 20px var(--card-shadow);
+      border: 1px solid var(--card-border);
+    }
+
+    .user-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--card-border);
+    }
+
+    .user-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-color), #e3b99a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      box-shadow: 0 3px 8px rgba(188, 157, 124, 0.12);
+    }
+
+    .user-avatar i {
+      font-size: 20px;
+      color: white;
+    }
+
+    .user-info h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .user-info .user-tagline {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    /* 项目卡片样式 */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 12px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(4px);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      border: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+  transform: translateY(-6px);
+  transition: all 0.3s ease;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(188, 157, 124, 0.15);
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent-color), #e3b99a);
+    }
+
+    .platform {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .platform img {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      filter: sepia(30%);
+    }
+
+    .platform-name {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .project-title {
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      padding-left: 3px;
+      font-weight: 500;
+    }
+
+    .url-row {
+      display: flex;
+      align-items: center;
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 5px 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .url {
+      font-size: 12.5px;
+      color: var(--text-primary);
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      padding-right: 8px;
+      line-height: 1.4;
+    }
+
+    .copy-btn {
+      background: var(--button-bg);
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 65px;
+    }
+
+    .copy-btn i {
+      margin-right: 4px;
+      font-size: 11px;
+    }
+
+    .copy-btn:hover {
+      background: var(--button-hover);
+      color: var(--text-primary);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 1.9rem;
+      }
+      
+      .user-header {
+        flex-direction: row; /* 保持水平排列 */
+      }
+      
+      .user-avatar {
+        margin-right: 12px;
+        margin-bottom: 0;
+      }
+      
+      .url {
+        white-space: normal;
+        word-break: break-all;
+      }
+      
+      body {
+        padding: 18px 10px;
+      }
+    }
+    
+    /* 提示信息 */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--success);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 24px;
+      font-size: 13px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 1000;
+    }
+    
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  
+    body {
+        background: url('snow.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+    
+.user-section { backdrop-filter: blur(4px); }
+.user-section { backdrop-filter: blur(10px); }</style>
+<link href="favicon.ico" rel="icon" type="image/x-icon"/></head>
+<body><audio id="bg-music" loop="true" src="the flood.mp3" style="display: none;" type="audio/mpeg"></audio>
+<div class="container">
+<header>
+<h1>itspomme 项目合集</h1>
+<p class="subtitle">精选项目导航 · 简洁优雅呈现</p>
+</header>
+<!-- itspomme6 部分 -->
+<section class="user-section">
+<div class="user-header">
+<div class="user-avatar">
+<i class="fas fa-palette"></i>
+</div>
+<div class="user-info">
+<h2>itspomme6</h2>
+<p class="user-tagline">色彩艺术家 · 视觉设计师</p>
+</div>
+</div>
+<div class="projects-grid">
+<!-- 色卡项目 GitHub -->
+<div class="project-card">
+<div class="platform">
+<img alt="GitHub" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"/>
+<span class="platform-name">GitHub Pages - 色卡</span>
+</div>
+<div class="project-title">优雅的色彩搭配方案与调色板</div>
+<div class="url-row">
+<span class="url" id="url1">https://itspomme6.github.io/color-6/</span>
+<button class="copy-btn" onclick="copyToClipboard('url1', 'GitHub色卡链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div>
+<!-- 色卡项目 Vercel -->
+<div class="project-card">
+<div class="platform">
+<img alt="Vercel" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vercel.svg"/>
+<span class="platform-name">Vercel - 色卡</span>
+</div>
+<div class="project-title">色彩灵感与设计资源库</div>
+<div class="url-row">
+<span class="url" id="url2">https://color-6.vercel.app/</span>
+<button class="copy-btn" onclick="copyToClipboard('url2', 'Vercel色卡链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- itspomme7 部分 -->
+<section class="user-section"><div class="user-header">
+<div class="user-avatar">
+<i class="fas fa-feather-alt"></i>
+</div>
+<div class="user-info">
+<h2>itspomme7</h2>
+<p class="user-tagline">安徒生喝汽水 · 创意开发者</p>
+</div>
+</div><div class="projects-grid"><div class="project-card">
+<div class="platform">
+<img alt="GitHub" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"/>
+<span class="platform-name">GitHub Pages - 账户</span>
+</div>
+<div class="project-title">用户账户管理与设置中心</div>
+<div class="url-row">
+<span class="url" id="url3">https://itspomme7.github.io/account-7/</span>
+<button class="copy-btn" onclick="copyToClipboard('url3', 'GitHub账户链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div></div></section><section class="user-section"><div class="projects-grid"><div class="project-card">
+<div class="platform">
+<img alt="Vercel" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vercel.svg"/>
+<span class="platform-name">Vercel - 账户</span>
+</div>
+<div class="project-title">账户配置与安全设置</div>
+<div class="url-row">
+<span class="url" id="url4">https://account-7.vercel.app/</span>
+<button class="copy-btn" onclick="copyToClipboard('url4', 'Vercel账户链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div></div></section><section class="user-section"><div class="projects-grid"><div class="project-card">
+<div class="platform">
+<img alt="GitHub" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"/>
+<span class="platform-name">GitHub Pages - 节点</span>
+</div>
+<div class="project-title">网络节点管理与监控系统</div>
+<div class="url-row">
+<span class="url" id="url5">https://itspomme7.github.io/node-7/</span>
+<button class="copy-btn" onclick="copyToClipboard('url5', 'GitHub节点链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div></div></section><section class="user-section"><div class="projects-grid"><div class="project-card">
+<div class="platform">
+<img alt="Vercel" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vercel.svg"/>
+<span class="platform-name">Vercel - 节点</span>
+</div>
+<div class="project-title">分布式节点状态仪表盘</div>
+<div class="url-row">
+<span class="url" id="url6">https://node-7.vercel.app/</span>
+<button class="copy-btn" onclick="copyToClipboard('url6', 'Vercel节点链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div></div></section><section class="user-section"><div class="projects-grid"><div class="project-card">
+<div class="platform">
+<img alt="GitHub" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"/>
+<span class="platform-name">GitHub Pages - 银行</span>
+</div>
+<div class="project-title">金融数据可视化与分析</div>
+<div class="url-row">
+<span class="url" id="url7">https://itspomme7.github.io/bank-7/</span>
+<button class="copy-btn" onclick="copyToClipboard('url7', 'GitHub银行链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div></div></section><section class="user-section"><div class="projects-grid"><div class="project-card">
+<div class="platform">
+<img alt="Vercel" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vercel.svg"/>
+<span class="platform-name">Vercel - 银行</span>
+</div>
+<div class="project-title">银行系统模拟与交互体验</div>
+<div class="url-row">
+<span class="url" id="url8">https://bank-7.vercel.app/</span>
+<button class="copy-btn" onclick="copyToClipboard('url8', 'Vercel银行链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div></div></section><section class="user-section"><div class="projects-grid"><div class="project-card">
+<div class="platform">
+<img alt="GitHub" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"/>
+<span class="platform-name">GitHub Pages - 信</span>
+</div>
+<div class="project-title">个性化电子信件创作平台</div>
+<div class="url-row">
+<span class="url" id="url_missluo">https://itspomme7.github.io/missluo-7/</span>
+<button class="copy-btn" onclick="copyToClipboard('url_missluo', 'GitHub信件链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div></div></section><section class="user-section"><div class="projects-grid"><div class="project-card">
+<div class="platform">
+<img alt="Vercel" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vercel.svg"/>
+<span class="platform-name">Vercel - 信</span>
+</div>
+<div class="project-title">手写风格信件生成工具</div>
+<div class="url-row">
+<span class="url" id="url10">https://letter-7.vercel.app/</span>
+<button class="copy-btn" onclick="copyToClipboard('url10', 'Vercel信件链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div></div></section>
+<!-- itspomme9 部分 -->
+<section class="user-section">
+<div class="user-header">
+<div class="user-avatar">
+<i class="fas fa-umbrella-beach"></i>
+</div>
+<div class="user-info">
+<h2>itspomme9</h2>
+<p class="user-tagline">小岛周末 · 旅行探索者</p>
+</div>
+</div>
+<div class="projects-grid">
+<!-- 导航项目 GitHub -->
+<div class="project-card">
+<div class="platform">
+<img alt="GitHub" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg"/>
+<span class="platform-name">GitHub Pages - 小岛周末导航</span>
+</div>
+<div class="project-title">海岛旅行路线规划与指南</div>
+<div class="url-row">
+<span class="url" id="url11">https://itspomme9.github.io/weekend-9/</span>
+<button class="copy-btn" onclick="copyToClipboard('url11', 'GitHub导航链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div>
+<!-- 导航项目 Vercel -->
+<div class="project-card">
+<div class="platform">
+<img alt="Vercel" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/vercel.svg"/>
+<span class="platform-name">Vercel - 小岛周末导航</span>
+</div>
+<div class="project-title">周末度假胜地精选与推荐</div>
+<div class="url-row">
+<span class="url" id="url12">https://weekend-9.vercel.app/</span>
+<button class="copy-btn" onclick="copyToClipboard('url12', 'Vercel导航链接已复制')">
+<i class="fas fa-copy"></i>复制
+            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="toast" id="toast">链接已复制到剪贴板</div>
+<script>
+    // 复制到剪贴板功能
+    function copyToClipboard(id, message) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(message || "链接已复制到剪贴板");
+      }).catch(err => {
+        showToast("复制失败: " + err);
+      });
+    }
+    
+    // 显示Toast通知
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+<div id="music-toggle" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #e2b899;
+    padding: 10px 14px;
+    border-radius: 50px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 999;
+">▶️ 播放音乐</div>
+<script>
+const music = document.getElementById('bg-music');
+const toggleBtn = document.getElementById('music-toggle');
+let isPlaying = false;
+
+toggleBtn.addEventListener('click', () => {
+    if (isPlaying) {
+        music.pause();
+        toggleBtn.textContent = '▶️ 播放音乐';
+    } else {
+        music.play();
+        toggleBtn.textContent = '⏸ 暂停音乐';
+    }
+    isPlaying = !isPlaying;
+});
+</script>
+</body>
+</html>
